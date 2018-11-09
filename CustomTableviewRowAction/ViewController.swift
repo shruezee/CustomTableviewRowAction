@@ -27,11 +27,11 @@ extension ViewController: UITableViewDataSource,UITableViewDelegate {
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 20
     }
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell") 
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") 
         
         cell?.textLabel?.text = "some cell \(indexPath.row)"
         cell?.detailTextLabel?.text = "Swipe for more >"
@@ -39,28 +39,26 @@ extension ViewController: UITableViewDataSource,UITableViewDelegate {
         return cell!
     }
     
-    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
-        let more = TableViewRowAction(style: .Normal, title: "More") { action, index in
+        let more = TableViewRowAction(style: .normal, title: "XS") { action, index in
             print("more button tapped")
 //            self.delegate?.onSwipeAction() /// Set up your action Here
         }
-        more.backgroundColor = UIColor.yellowColor()
+        more.backgroundColor = UIColor.red
         more.image = UIImage(named: "more-icon")
-        //        more.contentColor = ThemeColour().redColour
         
-        let remove = TableViewRowAction(style: .Normal, title: "Remove") { action, index in
+        let remove = TableViewRowAction(style: .normal, title: "Big custom title") { action, index in
             print("remove button tapped")
 //            self.delegate?.onSwipeAction(indexPath, actionType: SwipeActionType.Remove) /// Set up your action Here
         }
-        remove.backgroundColor = UIColor.purpleColor()
+        remove.backgroundColor = UIColor.purple
         remove.image = UIImage(named: "trash-icon")
-        //        remove.contentColor = ThemeColour().yellowColour
         
         return [more, remove]
     }
     
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // the cells you would like the actions to appear needs to be editable
         return true
     }
